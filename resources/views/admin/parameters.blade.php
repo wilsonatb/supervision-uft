@@ -28,8 +28,8 @@
                     <ul class="list-group list-group-horizontal">
                         <li class="list-group-item"><i class="fas fa-user"></i> <strong>Nombre:</strong> <span id="nombredeca"></span> </li>
                         <li class="list-group-item"><i class="fas fa-id-card"></i> <strong>Cedula:</strong> <span id="ceduladeca"></span> </li>
-                        <li class="list-group-item"><i class="far fa-envelope"></i> <strong>Correo:</strong> <span id="correodeca"></span> </li>
-                        <li class="list-group-item"><i class="fas fa-phone"></i> <strong>Telefono:</strong> <span id="telefonodeca"></span> </li>
+                        <li class="list-group-item"><i class="far fa-envelope"></i> <strong>Correo:</strong> <span id="telefonodeca"></span> </li>
+                        <li class="list-group-item"><i class="fas fa-phone"></i> <strong>Telefono:</strong> <span id="correodeca"></span> </li>
                       </ul>
                 </div>
             </div>

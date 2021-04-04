@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Decan;
 use App\Parameter;
 use App\School;
+use App\Subject;
 
 class DecanController extends Controller
 {
@@ -144,8 +145,27 @@ class DecanController extends Controller
 				}
 			}
 
-        $school = School::where('decan_id', $id)->delete();
-    
+        $schools = School::where('decan_id', $id)->get();
+
+        // Eliminar de escuelas
+        if($schools && count($schools) >= 1){
+            foreach($schools as $school){
+                $subjects = Subject::where('school_id', $school->id)->get();
+                
+                if($subjects && count($subjects) >= 1){
+                    foreach($subjects as $subject){
+                         // Eliminar relacion en tabla pivote
+                        $subject->users()->detach();
+
+                        $subject->delete();
+                    }
+                }
+               
+                $school->delete();
+
+            }
+        }
+        
         // Eliminar usuario
         $decan->delete();
 

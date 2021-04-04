@@ -91,6 +91,7 @@ Route::get('/parameters-subjects/{id}', 'ParameterController@getSubjectsByUser')
 Route::post('/parameters/save', 'ParameterController@save')->name('parameters.save')->middleware(['auth', 'role:director']);
 Route::get('/parameters/report-complete', 'ParameterController@reportComplete')->name('parameters.reportComplete')->middleware(['auth', 'role:director']);
 Route::get('/parameters/report-operative/{id}', 'ParameterController@reportByOperative')->name('parameters.operativeReport')->middleware(['auth', 'role:director']);
+Route::get('/parameters-stages/{subject_id}/{user_id}', 'ParameterController@getStagesByUser')->name('parameters.ajaxStages')->middleware(['auth', 'role:director']);
 
 Route::get('/subject-list', 'SubjectController@list')->name('subject.list')->middleware(['auth', 'role:director']);
 Route::get('/parameters/subject-report/{id}', 'ParameterController@reportBySubject')->name('parameters.subjectReport')->middleware(['auth', 'role:director']);
