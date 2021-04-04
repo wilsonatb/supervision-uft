@@ -35,7 +35,7 @@ $(document).ready(function () {
     }
 
     $(".test").change(function () {
-console.log('hola')
+
         /* Referencia al option seleccionado */
         var mOption = this.options[this.selectedIndex];
         /* Referencia a los atributos data de la opción seleccionada */
@@ -162,6 +162,8 @@ console.log('hola')
                     // Limpiamos el select
                     subjects.find('option').remove();
 
+                    subjects.append('<option data-nombreescue="" data-cedulaescue="" data-correoescue="" data-telefonoescue="" disabled selected>Selecione una materia</option>');
+
                     $.each(r.subjects, function (i, v) {
                         subjects.append('<option value="' + v.id + '">' + v.code + '-' + v.name + '</option>');
                     });
@@ -177,6 +179,60 @@ console.log('hola')
         else {
             subjects.find('option').remove();
             subjects.prop('disabled', true);
+        }
+    })
+
+    // Bloqueamos el SELECT de los bloques
+    $("#stage_id").prop('disabled', true);
+
+    // Hacemos la lógica que cuando nuestro SELECT cambia de valor haga algo
+    $("#slt-subjects").change(function () {
+
+        // Guardamos el select de etapas
+        var stages = $("#stage_id");
+
+        // Guardamos el select de materias
+        var users = $("#slt-users");
+
+        // Guardamos el select de usuarios
+        var subjets = $(this);
+
+        if ($(this).val() != '') {
+
+            $.ajax({
+                url: 'parameters-stages' + admin + '/' + users.val() + '/' + subjets.val(),
+                type: 'GET',
+                dataType: 'json',
+                beforeSend: function () {
+
+                    users.prop('disabled', true);
+                    subjets.prop('disabled', true);
+                },
+                success: function (r) {
+                    users.prop('disabled', false);
+                    subjets.prop('disabled', false);
+
+                    // Limpiamos el select
+                    stages.find('option').remove();
+
+                    stages.append('<option disabled selected>Selecione un bloque</option>');
+
+                    $.each(r.stages, function (i, v) {
+                        stages.append('<option value="' + v.id + '">' + v.stage + '</option>');
+                    });
+
+                    stages.prop('disabled', false);
+                },
+                error: function () {
+                    alert('Ocurrio un error en el servidor ..');
+                    users.prop('disabled', false);
+                    subjets.prop('disabled', false);
+                }
+            });
+        }
+        else {
+            stages.find('option').remove();
+            stages.prop('disabled', true);
         }
     })
 

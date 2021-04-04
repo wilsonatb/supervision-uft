@@ -71,6 +71,46 @@ class ParameterController extends Controller
         }
     }
 
+    public function getStagesByUser(Request $request, $user_id, $subject_id)
+    {
+
+        if ($request->ajax()) {
+
+            $stage = new Stage();
+
+            $stages = [];
+
+            $stage0 = Parameter::where('user_id', $user_id)->where('stage_id', 1)->where('subject_id', $subject_id)->get();
+            $stage1 = Parameter::where('user_id', $user_id)->where('stage_id', 2)->where('subject_id', $subject_id)->get();
+            $stage2 = Parameter::where('user_id', $user_id)->where('stage_id', 3)->where('subject_id', $subject_id)->get();
+            $stage3 = Parameter::where('user_id', $user_id)->where('stage_id', 4)->where('subject_id', $subject_id)->get();
+
+            $stages[] = $stage->find(1);
+
+            if($stage0 && count($stage0) >= 1){
+                $stages[] = $stage->find(2);
+			}
+
+            if($stage1 && count($stage1) >= 1){
+                $stages[] = $stage->find(3);
+			}
+
+            if($stage2 && count($stage2) >= 1){
+                $stages[] = $stage->find(4);
+			}
+
+            if($stage3 && count($stage3) >= 1){
+                $stages[] = $stage->find(5);
+			}
+
+            
+
+            return response()->json([
+                'stages' => $stages
+            ]);
+        }
+    }
+
 
 
     public function save(Request $request)

@@ -133,15 +133,7 @@
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="stage_id">Bloque</label>
-                                <select class="form-control" name="stage_id" id="stage_id" required>
-                                    <option disabled selected>Selecione un bloque</option>
-                                    @foreach ($stages as $stage)
-                                        <option value="{{ $stage->id }}">{{ $stage->stage }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            
                             <div class="form-group col-md-4">
                                 <label for="user_id">Docente</label>
                                 <select id="slt-users" class="form-control" name="user_id" required>
@@ -156,6 +148,14 @@
                                 <label for="subject_id">Materia</label>
                                 <select id="slt-subjects" class="form-control" name="subject_id" required>
 
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="stage_id">Bloque</label>
+                                <select class="form-control" name="stage_id" id="stage_id" required>
+                                    <option disabled selected>Selecione un bloque</option>
+                                    
                                 </select>
                             </div>
                         </div>

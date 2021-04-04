@@ -67,6 +67,7 @@ Route::get('/parameters-subjects-admin/{id}', 'ParameterController@getSubjectsBy
 Route::post('/parameters/save-admin', 'ParameterController@save')->name('parameters.saveAdmin')->middleware(['auth', 'role:admin']);
 Route::get('/parameters/report-complete-admin', 'ParameterController@reportComplete')->name('parameters.reportCompleteAdmin')->middleware(['auth', 'role:admin']);
 Route::get('/parameters/report-operative-admin/{id}', 'ParameterController@reportByOperative')->name('parameters.operativeReportAdmin')->middleware(['auth', 'role:admin']);
+Route::get('/parameters-stages-admin/{subject_id}/{user_id}', 'ParameterController@getStagesByUser')->name('parameters.ajaxStagesAdmin')->middleware(['auth', 'role:admin']);
 
 Route::get('/subject-list-admin', 'SubjectController@list')->name('subject.listAdmin')->middleware(['auth', 'role:admin']);
 Route::get('/parameters/subject-report-admin/{id}', 'ParameterController@reportBySubject')->name('parameters.subjectReportAdmin')->middleware(['auth', 'role:admin']);
