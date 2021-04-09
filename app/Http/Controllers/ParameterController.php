@@ -74,7 +74,7 @@ class ParameterController extends Controller
     public function getStagesByUser(Request $request, $user_id, $subject_id)
     {
 
-        if ($request->ajax()) {
+        
 
             $stage = new Stage();
 
@@ -108,7 +108,7 @@ class ParameterController extends Controller
             return response()->json([
                 'stages' => $stages
             ]);
-        }
+        
     }
 
 
@@ -218,15 +218,9 @@ class ParameterController extends Controller
         // Redirección
 
         if ($role == 'admin') {
-            return redirect()->route('parametersAdmin')
-            ->with([
-                'message' => 'Se ha guardado correctamente correctamente!!'
-            ]);
+            return 'Se ha guardado correctamente correctamente!!';
         } else {
-            return redirect()->route('parameters')
-            ->with([
-                'message' => 'Se ha guardado correctamente correctamente!!'
-            ]);
+            return 'Se ha guardado correctamente correctamente!!';
         }
         
     }

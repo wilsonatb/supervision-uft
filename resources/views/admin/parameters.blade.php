@@ -91,14 +91,14 @@
                 <!-- form start -->
                 @if(Auth::user()->hasRole('admin'))
                         @php($role = 'admin')
-                        <form role="form" action="{{ route('parameters.saveAdmin') }}" method="POST">
+                        
                     @else
                         @php($role = 'director')
-                        <form role="form" action="{{ route('parameters.save') }}" method="POST">
+                        
                     @endif
-                
+                <div>
                     @csrf
-                    <input type="hidden" name="role" value="{{ $role }}">
+                    <input type="hidden" name="role" id="role" value="{{ $role }}">
                     <div class="card-body">
 
                         <div class="form-row">
@@ -682,15 +682,195 @@
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-uft">Guardar</button>
+                        <button onclick=proccess_form(); class="btn btn-uft">Guardar</button>
+
+                        <button onclick=update_stage(); class="btn btn-uft">Actualizar cortes</button>
                     </div>
-                </form>
+
+                    
+                </div>
             </div>
             <!-- /.card -->
         </div>
     </div>
 @endsection
-
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 @section('script')
     <script src="{{ asset('adminlte/js/main.js') }}"></script>
+
+    
+
+@if(Auth::user()->hasRole('admin'))
+@php($role = 'admin')
+<script type="text/javascript">
+
+    function proccess_form(){
+            // For adding the token to axios header (add this only one time).
+            var laravelToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    
+            axios.post('parameters/save-admin',{
+                decan_id: document.getElementsByName('decan_id')[0].value,
+                school_id: document.getElementsByName('school_id')[0].value,
+                stage_id: document.getElementsByName('stage_id')[0].value,
+                user_id: document.getElementsByName('user_id')[0].value,
+                subject_id: document.getElementsByName('subject_id')[0].value,
+                lapse_id: document.getElementsByName('lapse_id')[0].value,
+                section_id: document.getElementsByName('section_id')[0].value,
+                unit: document.getElementsByName('unit')[0].value,
+                perfil: document.getElementsByName('perfil')[0].value,
+                forum_info: document.getElementsByName('forum_info')[0].value,
+                welcome_course: document.getElementsByName('welcome_course')[0].value,
+                welcome_video: document.getElementsByName('welcome_video')[0].value,
+                folder: document.getElementsByName('folder')[0].value,
+                forum_info_use: document.getElementsByName('forum_info_use')[0].value,
+                forum_doubts: document.getElementsByName('forum_doubts')[0].value,
+                delivery_notes: document.getElementsByName('delivery_notes')[0].value,
+                tools_use: document.getElementsByName('tools_use')[0].value,
+                interaction: document.getElementsByName('interaction')[0].value,
+                feedback: document.getElementsByName('feedback')[0].value,
+                final_notes: document.getElementsByName('final_notes')[0].value,
+                updated: document.getElementsByName('updated')[0].value,
+                extracathedral: document.getElementsByName('extracathedral')[0].value,
+                accomplish: document.getElementsByName('accomplish')[0].value,
+                comments: document.getElementsByName('comments')[0].value,
+                role: document.getElementsByName('role')[0].value,
+            })
+            .then(function (response) {
+                // handle success
+                alert(response.data);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            });
+    
+    }
+
+    function update_stage(){
+            // For adding the token to axios header (add this only one time).
+            var laravelToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            // Guardamos el select de etapas
+            var stages = stages = $("#stage_id");
+
+            // Guardamos el select de materias
+            var users = $("#slt-users");
+
+            // Guardamos el select de usuarios
+            var subjets = $('#slt-subjects');
+            
+
+            console.log(stages)
+            console.log(users)
+            console.log(subjets)
+    
+            users.prop('disabled', true);
+                    subjets.prop('disabled', true);
+            axios.get('parameters-stages-admin' + '/' + users.val() + '/' + subjets.val())
+            .then(function (response) {
+                // handle success
+                console.log(response);
+                
+                users.prop('disabled', false);
+                subjets.prop('disabled', false);
+
+                // Limpiamos el select
+                stages.find('option').remove();
+
+                stages.append('<option disabled selected>Selecione un bloque</option>');
+
+                $.each(response.data.stages, function (i, v) {
+                    stages.append('<option value="' + v.id + '">' + v.stage + '</option>');
+                });
+
+                stages.prop('disabled', false);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            });
+    
+    }
+</script>
+@else
+@php($role = 'director')
+<script type="text/javascript">
+
+    function proccess_form(){
+            // For adding the token to axios header (add this only one time).
+            var laravelToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    
+            axios.post('parameters/save',{
+                decan_id: document.getElementsByName('decan_id')[0].value,
+                school_id: document.getElementsByName('school_id')[0].value,
+                stage_id: document.getElementsByName('stage_id')[0].value,
+                user_id: document.getElementsByName('user_id')[0].value,
+                subject_id: document.getElementsByName('subject_id')[0].value,
+                lapse_id: document.getElementsByName('lapse_id')[0].value,
+                section_id: document.getElementsByName('section_id')[0].value,
+                unit: document.getElementsByName('unit')[0].value,
+                perfil: document.getElementsByName('perfil')[0].value,
+                forum_info: document.getElementsByName('forum_info')[0].value,
+                welcome_course: document.getElementsByName('welcome_course')[0].value,
+                welcome_video: document.getElementsByName('welcome_video')[0].value,
+                folder: document.getElementsByName('folder')[0].value,
+                forum_info_use: document.getElementsByName('forum_info_use')[0].value,
+                forum_doubts: document.getElementsByName('forum_doubts')[0].value,
+                delivery_notes: document.getElementsByName('delivery_notes')[0].value,
+                tools_use: document.getElementsByName('tools_use')[0].value,
+                interaction: document.getElementsByName('interaction')[0].value,
+                feedback: document.getElementsByName('feedback')[0].value,
+                final_notes: document.getElementsByName('final_notes')[0].value,
+                updated: document.getElementsByName('updated')[0].value,
+                extracathedral: document.getElementsByName('extracathedral')[0].value,
+                accomplish: document.getElementsByName('accomplish')[0].value,
+                comments: document.getElementsByName('comments')[0].value,
+                role: document.getElementsByName('role')[0].value,
+            })
+            .then(function (response) {
+                // handle success
+                console.log(response);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            });
+    
+    }
+
+    function update_stage(){
+            // For adding the token to axios header (add this only one time).
+            var laravelToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            // Guardamos el select de etapas
+            var stages = stages = $("#stage_id");
+
+            // Guardamos el select de materias
+            var users = $("#slt-users");
+
+            // Guardamos el select de usuarios
+            var subjets = $('#slt-subjects');
+    
+            axios.get('parameters-stages' + '/' + users.value + '/' + subjets.value)
+            .then(function (response) {
+                users.prop('disabled', false);
+                subjets.prop('disabled', false);
+
+                // Limpiamos el select
+                stages.find('option').remove();
+
+                stages.append('<option disabled selected>Selecione un bloque</option>');
+
+                $.each(response.data.stages, function (i, v) {
+                    stages.append('<option value="' + v.id + '">' + v.stage + '</option>');
+                });
+
+                stages.prop('disabled', false);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            });
+    
+    }
+</script>
+@endif
 @endsection
