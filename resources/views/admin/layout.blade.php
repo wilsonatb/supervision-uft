@@ -195,7 +195,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <a href="{{ route('parametersAdmin') }}" class="nav-link">
                     <i class="nav-icon fas fa-clipboard-list"></i>
                     <p>
-                      Formulario
+                      Evaluación docente
                     </p>
                   </a>
                 </li>
@@ -316,7 +316,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="{{ route('parameters') }}" class="nav-link">
               <i class="nav-icon fas fa-clipboard-list"></i>
               <p>
-                Formulario
+                Evaluación docente
               </p>
             </a>
           </li>
@@ -384,6 +384,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('adminlte/Buttons-1.7.0/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('adminlte/Buttons-1.7.0/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('adminlte/DataTables-1.10.24/js/dataTables.searchPanes.min.js') }}"></script>
+<script src="{{ asset('adminlte/DataTables-1.10.24/js/dataTables.select.min.js') }}"></script>
 
 
 <script src="{{ asset('adminlte/plugins/moment/moment.min.js') }}"></script>
