@@ -125,7 +125,6 @@ class ParameterController extends Controller
             'subject_id' => 'required',
             'lapse_id' => 'required',
             'section_id' => 'required',
-            'unit' => 'string|required',
             'perfil' => 'string',
             'forum_info' => 'string',
             'welcome_course' => 'string',
@@ -155,7 +154,7 @@ class ParameterController extends Controller
         $user_id = $request->input('user_id');
         $section_id = $request->input('section_id');
         $subject_id = $request->input('subject_id');
-        $unit = $request->input('unit');
+        $unit = 'algo';
         $perfil = $request->input('perfil');
         $forum_info = $request->input('forum_info');
         $welcome_course = $request->input('welcome_course');

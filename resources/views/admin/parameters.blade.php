@@ -161,7 +161,7 @@
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md">
                                 <label for="section_id">Seccion</label>
                                 <select id="section_id" class="form-control" name="section_id" required>
 
@@ -173,7 +173,7 @@
                                 </select>
                             </div>
 
-                            <div class="form-group col-md-6">
+                            {{-- <div class="form-group col-md-6">
                                 <label for="unit">Unidad</label>
                                 <select class="form-control" name="unit" required>
 
@@ -200,7 +200,7 @@
                                     <option>Unidad 19</option>
                                     <option>Unidad 20</option>
                                 </select>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <hr>
@@ -695,6 +695,7 @@
     </div>
 @endsection
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 @section('script')
     <script src="{{ asset('adminlte/js/main.js') }}"></script>
 
@@ -716,7 +717,6 @@
                 subject_id: document.getElementsByName('subject_id')[0].value,
                 lapse_id: document.getElementsByName('lapse_id')[0].value,
                 section_id: document.getElementsByName('section_id')[0].value,
-                unit: document.getElementsByName('unit')[0].value,
                 perfil: document.getElementsByName('perfil')[0].value,
                 forum_info: document.getElementsByName('forum_info')[0].value,
                 welcome_course: document.getElementsByName('welcome_course')[0].value,
@@ -807,7 +807,6 @@
                 subject_id: document.getElementsByName('subject_id')[0].value,
                 lapse_id: document.getElementsByName('lapse_id')[0].value,
                 section_id: document.getElementsByName('section_id')[0].value,
-                unit: document.getElementsByName('unit')[0].value,
                 perfil: document.getElementsByName('perfil')[0].value,
                 forum_info: document.getElementsByName('forum_info')[0].value,
                 welcome_course: document.getElementsByName('welcome_course')[0].value,

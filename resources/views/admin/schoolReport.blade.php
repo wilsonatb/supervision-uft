@@ -10,6 +10,12 @@
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
+        <ul class="list-group list-group-horizontal">
+          <li class="list-group-item"><i class="fas fa-user"></i> <strong>Jefe:</strong> {{ $user->school_name }}</li>
+          <li class="list-group-item"><i class="fas fa-id-card"></i> <strong>Cedula:</strong> {{ $user->document }}</li>
+          <li class="list-group-item"><i class="far fa-envelope"></i> <strong>Correo:</strong> {{ $user->email }}</li>
+          <li class="list-group-item"><i class="fas fa-phone"></i> <strong>Telefono:</strong> {{ $user->phone }}</li>
+        </ul>
       </div>
       <!-- /.content-header -->
 
@@ -33,7 +39,7 @@
                   <th>Seccion</th>
                   <th>Lapso</th>
                   <th>Corte</th>
-                  <th>Unidad</th>
+                  {{-- <th>Unidad</th> --}}
                   <th>Perfil</th>
                   <th>Foro de Informacion</th>
                   <th>Bienvenida al curso</th>
@@ -62,7 +68,7 @@
                         <td>{{ $key->section->name }}</td>
                         <td>{{ $key->lapse->lapse }} <strong style="font-size: 10px">{{ $key->lapse->date_range }}</strong></td>
                         <td>{{ $key->stage->stage }}</td>
-                        <td>{{ $key->unit }}</td>
+                        {{-- <td>{{ $key->unit }}</td> --}}
                         <td>{{ $key->perfil }}</td>
                         <td>{{ $key->forum_info }}</td>
                         <td>{{ $key->welcome_course  }}</td>
@@ -91,7 +97,7 @@
                     <th>Seccion</th>
                   <th>lapso</th>
                   <th>Corte</th>
-                  <th>Unidad</th>
+                  {{-- <th>Unidad</th> --}}
                   <th>Perfil</th>
                   <th>Foro de Informacion</th>
                   <th>Bienvenida al curso</th>
